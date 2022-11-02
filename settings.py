@@ -3,7 +3,7 @@ import os
 import pygame
 
 FPS = 60
-LEVEL = [3000, 2750, 2500, 2250, 2000, 1750, 1500, 1250, 1000, 750, 500, 250, 100]
+LEVEL = [30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10]
 WHITE = (255, 255, 255)
 pygame.display.set_caption("T'es-triste")
 

@@ -13,7 +13,7 @@ def main():
     clock = pygame.time.Clock()
     clock.tick(FPS)
     chrono = 0
-    level = 0
+    level = 10
     score = 0
     piece = Piece()
     play = True
@@ -63,7 +63,7 @@ def main():
 
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_DOWN]:
-            pygame.time.wait(50)
+            pygame.time.wait(15)
             try:
                 piece.move_down()
             except IndexError:
