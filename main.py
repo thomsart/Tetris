@@ -1,5 +1,3 @@
-import os
-
 import pygame
 from pygame.locals import *
 
@@ -23,6 +21,8 @@ def main():
         WIND.fill(WHITE)
         build_console()
         BLOCKED_BRICKS.draw(WIND)
+        WIND.blit(TEXT.render("Score: " + str(score), 5, (0, 0, 0)), (5, 0))
+        WIND.blit(TEXT.render("Level: " + str(level), 5, (0, 0, 0)), (200, 0))
 
         chrono += 1
         if chrono > 10000:
@@ -59,7 +59,7 @@ def main():
 
                 if event.key == pygame.K_SPACE:
                     piece.rotate()
-                    ROTATION_SOUNDEFFECT.play()
+                    ROTATION_SOUNDEFFECT.play().set_volume(0.1)
 
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_DOWN]:
@@ -68,16 +68,17 @@ def main():
                 piece.move_down()
             except IndexError:
                 piece.lock()
-                LOCKED_SOUNDEFFECT.play()
+                LOCKED_SOUNDEFFECT.play().set_volume(0.3)
 
         if chrono in range(0, 10000, LEVEL[level]):
             try:
                 piece.move_down()
             except IndexError:
                 piece.lock()
-                LOCKED_SOUNDEFFECT.play()
+                LOCKED_SOUNDEFFECT.play().set_volume(0.3)
 
         piece.refresh()
+
         pygame.display.flip()
 
     pygame.quit()

@@ -13,13 +13,13 @@ class Piece:
     def __init__(self):
         self.bricks = random.choice(
             [
-                [Brick(2, 3, "blue"), Brick(2, 4, "blue") , Brick(2, 5, "blue"), Brick(1, 3, "blue")],
-                [Brick(2, 3, "green"), Brick(2, 4, "green") , Brick(2, 5, "green"), Brick(1, 5, "green")],
-                [Brick(2, 3, "red"), Brick(2, 4, "red") , Brick(1, 4, "red"), Brick(1, 5, "red")],
-                [Brick(1, 3, "yellow"), Brick(1, 4, "yellow") , Brick(2, 4, "yellow"), Brick(2, 5, "yellow")],
-                [Brick(2, 3, "purple"), Brick(2, 4, "purple") , Brick(2, 5, "purple"), Brick(1, 4, "purple")],
-                [Brick(2, 3, "brown"), Brick(2, 4, "brown") , Brick(2, 5, "brown"), Brick(2, 6, "brown")],
-                [Brick(2, 3, "pink"), Brick(2, 4, "pink") , Brick(1, 3, "pink"), Brick(1, 4, "pink")]
+                [Brick(1, 3, "blue"), Brick(1, 4, "blue") , Brick(1, 5, "blue"), Brick(0, 3, "blue")], # L
+                [Brick(1, 3, "green"), Brick(1, 4, "green") , Brick(1, 5, "green"), Brick(0, 5, "green")], # L
+                [Brick(1, 3, "red"), Brick(1, 4, "red") , Brick(0, 4, "red"), Brick(0, 5, "red")], # S
+                [Brick(0, 3, "yellow"), Brick(0, 4, "yellow") , Brick(1, 4, "yellow"), Brick(1, 5, "yellow")], # S
+                [Brick(1, 3, "purple"), Brick(1, 4, "purple") , Brick(1, 5, "purple"), Brick(0, 4, "purple")], # podium
+                [Brick(1, 3, "brown"), Brick(1, 4, "brown") , Brick(1, 5, "brown"), Brick(1, 6, "brown")], # stick
+                [Brick(1, 3, "pink"), Brick(1, 4, "pink") , Brick(0, 3, "pink"), Brick(0, 4, "pink")] # square
             ]
         )
         self.pivot = self.bricks[1]
@@ -161,9 +161,9 @@ class Piece:
 
         if rows_to_free != []:
 
-            LINE_FREE_SOUNDEFFECT.play()
+            LINE_FREE_SOUNDEFFECT.play().set_volume(0.1)
             if len(rows_to_free) == 4:
-                JACKPOT_SOUNDEFFECT.play()
+                JACKPOT_SOUNDEFFECT.play().set_volume(0.1)
 
             multiples = {1: 1, 2: 2, 3: 5, 4: 10}
             multiple = multiples[len(rows_to_free)]
