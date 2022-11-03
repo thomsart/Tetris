@@ -60,6 +60,7 @@ LOCKED_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "locked.w
 JACKPOT_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "jackpot.wav"))
 LINE_FREE_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "line_free.wav"))
 GAMEOVER_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "gameover_laugth.wav"))
+BINGO_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "bingo.wav"))
 pygame.mixer.music.load(os.path.join("assets", "midi", "music_overworld.wav"))
 
 ##### Text ##################
