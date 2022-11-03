@@ -13,7 +13,7 @@ def main():
     chrono = 0
     pause = False
     play = True
-    level = 10
+    level = 0
     score = 0
     piece = Piece()
 
@@ -56,6 +56,13 @@ def main():
                     except IndexError:
                         piece.lock()
                         LOCKED_SOUNDEFFECT.play()
+
+                if event.key == pygame.K_KP_PLUS:
+                    if level == len(LEVEL) - 1:
+                        pass
+                    else:
+                        level += 1
+
 
                 if event.key == pygame.K_UP:
                     if pause:
