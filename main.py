@@ -13,9 +13,11 @@ def main():
     chrono = 0
     pause = False
     play = True
-    level = 0
+    level = 1
     score = 0
     piece = Piece()
+    pygame.mixer.music.play()
+    pygame.mixer.music.set_volume(0.1)
 
     while play:
 
@@ -63,7 +65,6 @@ def main():
                     else:
                         level += 1
 
-
                 if event.key == pygame.K_UP:
                     if pause:
                         pause = False
@@ -83,20 +84,33 @@ def main():
                 piece.lock()
                 LOCKED_SOUNDEFFECT.play().set_volume(0.3)
 
-        if chrono in range(0, 10000, LEVEL[level]) and not pause:
+        if chrono in range(0, 10000, LEVEL[level - 1]) and not pause:
             try:
                 piece.move_down()
             except IndexError:
                 piece.lock()
-                LOCKED_SOUNDEFFECT.play().set_volume(0.3)
+                LOCKED_SOUNDEFFECT.play().set_volume(0.3)                
 
         piece.refresh()
 
+        if pause:
+            pygame.mixer.music.pause()
+            WIND.blit(PAUSE, (B * 5, B * 8))
+        else:
+            pygame.mixer.music.unpause()
+
         pygame.display.flip()
+
+
+    pygame.mixer.music.stop()
+    GAMEOVER_SOUNDEFFECT.play().set_volume(0.3)
+    WIND.blit(TEXT.render("GAME OVER", 5, (0, 0, 0)), (B * 4, B * 8))
+    pygame.display.flip()
+    pygame.time.wait(5000)
 
     pygame.quit()
 
-    print("Game-Overrrrrrr")
+    
 
 if __name__ == "__main__":
     main()

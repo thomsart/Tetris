@@ -5,6 +5,7 @@ import pygame
 FPS = 60
 LEVEL = [30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10]
 WHITE = (255, 255, 255)
+PAUSE = pygame.image.load(os.path.join("assets", "blocks", "pause.png"))
 pygame.display.set_caption("Tetris")
 
 B = 30 # pixels for each side of the brick
@@ -16,7 +17,7 @@ WIND = pygame.display.set_mode((GAME_WIDTH, GAME_HEIGHT))
 
 # coord(column, row) == coord(x, y)
 CONSOLE = [
-    (0,0),(1,0),(2,0),(3,0),(4,0),(5,0),(6,0),(7,0),(8, 0),(9, 0),(10, 0),(11, 0),(12, 0),(13, 0),(14, 0),(15, 0),(16, 0),
+    (0,0),                                                                (11, 0),(12, 0),(13, 0),(14, 0),(15, 0),(16, 0),
     (0,1),                                                                (11, 1),                                (16, 1),
     (0,2),                                                                (11, 2),                                (16, 2),
     (0,3),                                                                (11, 3),                                (16, 3),
@@ -58,6 +59,8 @@ ROTATION_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "rotate
 LOCKED_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "locked.wav"))
 JACKPOT_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "jackpot.wav"))
 LINE_FREE_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "line_free.wav"))
+GAMEOVER_SOUNDEFFECT = pygame.mixer.Sound(os.path.join("assets", "midi", "gameover_laugth.wav"))
+pygame.mixer.music.load(os.path.join("assets", "midi", "music_overworld.wav"))
 
 ##### Text ##################
 pygame.font.init()

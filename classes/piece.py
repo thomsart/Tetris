@@ -148,7 +148,6 @@ class Piece:
         already_checked_rows = []
         points = 0
 
-
         for brick in self.bricks:
             count = 0
             if not brick.row in already_checked_rows:
