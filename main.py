@@ -16,8 +16,6 @@ def main():
     level = 1
     score = 0
     piece = Piece()
-    pygame.mixer.music.play()
-    pygame.mixer.music.set_volume(0.1)
 
     while play:
 
@@ -40,7 +38,8 @@ def main():
                 play = False
             else:
                 score += piece.add_points(level)
-                if score > 5000 * level and level != 10:
+                print(500 * level)
+                if score > 1000 * level and level != 10:
                     level += 1
                     BINGO_SOUNDEFFECT.play().set_volume(0.1)
                 piece = Piece()
@@ -110,10 +109,7 @@ def main():
         piece.refresh()
 
         if pause:
-            pygame.mixer.music.pause()
             WIND.blit(PAUSE, (B * 5, B * 8))
-        else:
-            pygame.mixer.music.unpause()
 
         pygame.display.flip()
 
