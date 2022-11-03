@@ -11,10 +11,11 @@ def main():
     clock = pygame.time.Clock()
     clock.tick(FPS)
     chrono = 0
+    pause = False
+    play = True
     level = 10
     score = 0
     piece = Piece()
-    play = True
 
     while play:
 
@@ -43,26 +44,31 @@ def main():
 
             if event.type == pygame.KEYDOWN:
 
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT and not pause:
                     piece.move_right()
 
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT and not pause:
                     piece.move_left()
 
-                if event.key == pygame.K_DOWN:
+                if event.key == pygame.K_DOWN and not pause:
                     try:
                         piece.move_down()
-
                     except IndexError:
                         piece.lock()
                         LOCKED_SOUNDEFFECT.play()
 
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_UP:
+                    if pause:
+                        pause = False
+                    else:
+                        pause = True
+
+                if event.key == pygame.K_SPACE and not pause:
                     piece.rotate()
                     ROTATION_SOUNDEFFECT.play().set_volume(0.1)
 
         key_pressed = pygame.key.get_pressed()
-        if key_pressed[pygame.K_DOWN]:
+        if key_pressed[pygame.K_DOWN] and not pause:
             pygame.time.wait(15)
             try:
                 piece.move_down()
@@ -70,7 +76,7 @@ def main():
                 piece.lock()
                 LOCKED_SOUNDEFFECT.play().set_volume(0.3)
 
-        if chrono in range(0, 10000, LEVEL[level]):
+        if chrono in range(0, 10000, LEVEL[level]) and not pause:
             try:
                 piece.move_down()
             except IndexError:
