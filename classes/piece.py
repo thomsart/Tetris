@@ -13,13 +13,13 @@ class Piece:
     def __init__(self):
         self.bricks = random.choice(
             [
-                [Brick(1, 3, "blue"), Brick(1, 4, "blue") , Brick(1, 5, "blue"), Brick(0, 3, "blue")], # L
-                [Brick(1, 3, "green"), Brick(1, 4, "green") , Brick(1, 5, "green"), Brick(0, 5, "green")], # L
-                [Brick(1, 3, "red"), Brick(1, 4, "red") , Brick(0, 4, "red"), Brick(0, 5, "red")], # S
-                [Brick(0, 3, "yellow"), Brick(0, 4, "yellow") , Brick(1, 4, "yellow"), Brick(1, 5, "yellow")], # S
-                [Brick(1, 3, "purple"), Brick(1, 4, "purple") , Brick(1, 5, "purple"), Brick(0, 4, "purple")], # podium
-                [Brick(1, 3, "brown"), Brick(1, 4, "brown") , Brick(1, 5, "brown"), Brick(1, 6, "brown")], # stick
-                [Brick(1, 3, "pink"), Brick(1, 4, "pink") , Brick(0, 3, "pink"), Brick(0, 4, "pink")] # square
+                [Brick(1, 4, "blue"), Brick(1, 5, "blue") , Brick(1, 6, "blue"), Brick(0, 4, "blue")], # L
+                [Brick(1, 4, "green"), Brick(1, 5, "green") , Brick(1, 6, "green"), Brick(0, 6, "green")], # L
+                [Brick(1, 4, "red"), Brick(1, 5, "red") , Brick(0, 5, "red"), Brick(0, 6, "red")], # S
+                [Brick(0, 4, "yellow"), Brick(0, 5, "yellow") , Brick(1, 5, "yellow"), Brick(1, 6, "yellow")], # S
+                [Brick(1, 4, "purple"), Brick(1, 5, "purple") , Brick(1, 6, "purple"), Brick(0, 5, "purple")], # podium
+                [Brick(1, 4, "brown"), Brick(1, 5, "brown") , Brick(1, 6, "brown"), Brick(1, 7, "brown")], # stick
+                [Brick(1, 4, "pink"), Brick(1, 5, "pink") , Brick(0, 4, "pink"), Brick(0, 5, "pink")] # square
             ]
         )
         self.pivot = self.bricks[1]

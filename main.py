@@ -19,10 +19,11 @@ def main():
     while play:
 
         WIND.fill(WHITE)
-        build_console()
         BLOCKED_BRICKS.draw(WIND)
-        WIND.blit(TEXT.render("Score: " + str(score), 5, (0, 0, 0)), (5, 0))
-        WIND.blit(TEXT.render("Level: " + str(level), 5, (0, 0, 0)), (200, 0))
+        display_board()
+        WIND.blit(TEXT.render(" Level:" + str(level), 5, (0, 0, 0)), (B * 12, B * 2))
+        WIND.blit(TEXT.render("  Score:", 5, (0, 0, 0)), (B * 12, B * 4))
+        WIND.blit(TEXT.render("  " + str(score), 5, (0, 0, 0)), (B * 12, B * 5))
 
         chrono += 1
         if chrono > 10000:
@@ -33,7 +34,6 @@ def main():
                 play = False
             else:
                 score += piece.add_points(level)
-                print("New score : " + str(score))
                 piece = Piece()
 
         for event in pygame.event.get():
