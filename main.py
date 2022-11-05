@@ -112,10 +112,7 @@ def main():
         if pause:
             WIND.blit(PAUSE, (BRICK * 5, BRICK * 8))
 
-        pygame.display.update() # on utilise update au leu de flip pour
-        #                         # pouvoir rafraichir des portions donnée
-        #                         # et non toute la fenetre
-        #                         # [PLAY_SURFACE_RECT, CONSOLE_BOARD_RECT]
+        pygame.display.update()
         
     # Game-over
     pygame.mixer.music.stop()
