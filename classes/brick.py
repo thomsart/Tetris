@@ -18,7 +18,7 @@ class Brick(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.row = row # from 0 to 19
         self.column = column # from 0 to 9 <- or ->
-        self.position = GAME_AREA[self.row][self.column]
+        self.position = PLAY_AREA[self.row][self.column]
         self.image = pygame.image.load(os.path.join("assets", "blocks", f"{color}.png"))
         self.rect = self.image.get_rect()
         self.rect.x = self.position[0]
@@ -28,6 +28,6 @@ class Brick(pygame.sprite.Sprite):
         FREE_BRICK.update()
 
     def refresh_position(self):
-        self.position = GAME_AREA[self.row][self.column]
+        self.position = PLAY_AREA[self.row][self.column]
         self.rect.x = self.position[0]
         self.rect.y = self.position[1]

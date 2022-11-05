@@ -5,26 +5,28 @@ from settings import *
 from classes.piece import *
 
 
-
 def main():
 
     clock = pygame.time.Clock()
     clock.tick(FPS)
     chrono = 0
-    pause = False
-    play = True
     level = 1
     score = 0
+    pause = False
+    play = True
+
     piece = Piece()
 
     while play:
 
-        WIND.fill(WHITE)
+        WIND.blit(PLAY_SURFACE, PLAY_RECT)
+        WIND.blit(CONSOLE_SURFACE, CONSOLE_RECT)
+        PLAY_SURFACE.fill(WHITE)
+        CONSOLE_SURFACE.fill(WHITE)
         BLOCKED_BRICKS.draw(WIND)
-        display_board()
-        WIND.blit(TEXT.render(" Level:" + str(level), 5, (0, 0, 0)), (B * 12, B * 2))
-        WIND.blit(TEXT.render("  Score:", 5, (0, 0, 0)), (B * 12, B * 4))
-        WIND.blit(TEXT.render("  " + str(score), 5, (0, 0, 0)), (B * 12, B * 5))
+        WIND.blit(TEXT.render("  Level:" + str(level), 5, (0, 0, 0)), (BRICK * 12, BRICK * 3))
+        WIND.blit(TEXT.render("  Score:", 5, (0, 0, 0)), (BRICK * 12, BRICK * 5))
+        WIND.blit(TEXT.render("  " + str(score), 5, (0, 0, 0)), (BRICK * 12, BRICK * 6))
 
         chrono += 1
         if chrono > 10000:
@@ -38,7 +40,6 @@ def main():
                 play = False
             else:
                 score += piece.add_points(level)
-                print(500 * level)
                 if score > 1000 * level and level != 10:
                     level += 1
                     BINGO_SOUNDEFFECT.play().set_volume(0.1)
@@ -89,7 +90,7 @@ def main():
         # Go down faster the piece.
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_DOWN] and not pause:
-            pygame.time.wait(15)
+            pygame.time.wait(30)
             try:
                 piece.move_down()
             except IndexError:
@@ -109,20 +110,23 @@ def main():
         piece.refresh()
 
         if pause:
-            WIND.blit(PAUSE, (B * 5, B * 8))
+            WIND.blit(PAUSE, (BRICK * 5, BRICK * 8))
 
-        pygame.display.flip()
-
+        pygame.display.update() # on utilise update au leu de flip pour
+        #                         # pouvoir rafraichir des portions donnée
+        #                         # et non toute la fenetre
+        #                         # [PLAY_SURFACE_RECT, CONSOLE_BOARD_RECT]
+        
     # Game-over
     pygame.mixer.music.stop()
     GAMEOVER_SOUNDEFFECT.play().set_volume(0.3)
-    WIND.blit(TEXT.render("GAME OVER", 5, (0, 0, 0)), (B * 4, B * 8))
+    WIND.blit(TEXT.render("GAME OVER", 5, (0, 0, 0)), (BRICK * 4, BRICK * 8))
     pygame.display.flip()
-    pygame.time.wait(5000)
+    # pygame.time.wait(5000)
 
     pygame.quit()
 
-    
+
 
 if __name__ == "__main__":
     main()

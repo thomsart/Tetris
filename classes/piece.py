@@ -145,34 +145,36 @@ class Piece:
     def add_points(self, level):
 
         rows_to_free = []
-        already_checked_rows = []
+        checked_rows = []
         points = 0
 
         for brick in self.bricks:
             count = 0
-            if not brick.row in already_checked_rows:
+            if not brick.row in checked_rows:
+                checked_rows.append(brick.row)
                 for bricks in BLOCKED_BRICKS:
                     if bricks.row == brick.row:
                         count += 1
                         if count == 10:
                             rows_to_free.append(brick.row)
-                already_checked_rows.append(brick.row)
 
         if rows_to_free != []:
 
-            LINE_FREE_SOUNDEFFECT.play().set_volume(0.1)
+            rows_to_free.sort()
+
             if len(rows_to_free) == 4:
                 JACKPOT_SOUNDEFFECT.play().set_volume(0.1)
+            else:
+                LINE_FREE_SOUNDEFFECT.play().set_volume(0.1)
 
             multiples = {1: 1, 2: 2, 3: 5, 4: 10}
             multiple = multiples[len(rows_to_free)]
             # First we remove all bricks of the lines to free
-            for each_row in rows_to_free:
-                for brick in BLOCKED_BRICKS:
-                    if brick.row == each_row:
-                        BLOCKED_BRICKS.remove(brick)
-                        points += level
-            BLOCKED_BRICKS.update()
+            for brick in BLOCKED_BRICKS:
+                if brick.row in rows_to_free:
+                    BLOCKED_BRICKS.remove(brick)
+                    BLOCKED_BRICKS.update()
+                    points += level
 
             for each_row in rows_to_free:
                 for brick in BLOCKED_BRICKS:
@@ -187,5 +189,5 @@ class Piece:
     def is_drowned(self):
 
         for brick in self.bricks:
-            if brick.row < 2:
+            if brick.row < 1:
                 return True
