@@ -16,6 +16,8 @@ def main():
     play = True
 
     piece = Piece()
+    next_piece = Piece()
+    next_piece.put_aside()
 
     while play:
 
@@ -45,7 +47,10 @@ def main():
                 if score > LEVEL[level] * POINT[level] and level <= 10:
                     level += 1
                     BINGO_SOUNDEFFECT.play().set_volume(0.1)
-                piece = Piece()
+                piece = next_piece
+                piece.remove_back_to_init()
+                next_piece = Piece()
+                next_piece.put_aside()
 
         for event in pygame.event.get():
 
@@ -92,7 +97,7 @@ def main():
         # Go down faster the piece.
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_DOWN] and not pause:
-            pygame.time.wait(30)
+            pygame.time.wait(40)
             try:
                 piece.move_down()
             except IndexError:
@@ -110,6 +115,7 @@ def main():
                 LOCKED_SOUNDEFFECT.play().set_volume(0.3)                
 
         piece.refresh()
+        next_piece.refresh()
 
         if pause:
             WIND.blit(PAUSE, (BRICK * 5, BRICK * 8))

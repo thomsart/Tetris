@@ -13,17 +13,31 @@ class Piece:
     def __init__(self):
         self.bricks = random.choice(
             [
-                [Brick(1, 4, "blue"), Brick(1, 5, "blue") , Brick(1, 6, "blue"), Brick(0, 4, "blue")], # L
-                [Brick(1, 4, "green"), Brick(1, 5, "green") , Brick(1, 6, "green"), Brick(0, 6, "green")], # L
-                [Brick(1, 4, "red"), Brick(1, 5, "red") , Brick(0, 5, "red"), Brick(0, 6, "red")], # S
-                [Brick(0, 4, "yellow"), Brick(0, 5, "yellow") , Brick(1, 5, "yellow"), Brick(1, 6, "yellow")], # S
-                [Brick(1, 4, "purple"), Brick(1, 5, "purple") , Brick(1, 6, "purple"), Brick(0, 5, "purple")], # podium
-                [Brick(1, 4, "brown"), Brick(1, 5, "brown") , Brick(1, 6, "brown"), Brick(1, 7, "brown")], # stick
-                [Brick(1, 4, "pink"), Brick(1, 5, "pink") , Brick(0, 4, "pink"), Brick(0, 5, "pink")] # square
+                [Brick(2, 4, "blue"), Brick(2, 5, "blue") , Brick(2, 6, "blue"), Brick(1, 4, "blue")], # L
+                [Brick(2, 4, "green"), Brick(2, 5, "green") , Brick(2, 6, "green"), Brick(1, 6, "green")], # L
+                [Brick(2, 4, "red"), Brick(2, 5, "red") , Brick(1, 5, "red"), Brick(1, 6, "red")], # S
+                [Brick(1, 4, "yellow"), Brick(1, 5, "yellow") , Brick(2, 5, "yellow"), Brick(2, 6, "yellow")], # S
+                [Brick(2, 4, "purple"), Brick(2, 5, "purple") , Brick(2, 6, "purple"), Brick(1, 5, "purple")], # podium
+                [Brick(2, 4, "brown"), Brick(2, 5, "brown") , Brick(2, 6, "brown"), Brick(2, 7, "brown")], # stick
+                [Brick(2, 4, "pink"), Brick(2, 5, "pink") , Brick(1, 4, "pink"), Brick(1, 5, "pink")] # square
             ]
         )
         self.pivot = self.bricks[1]
 
+    def put_aside(self):
+
+        self.rotate()
+        for brick in self.bricks:
+            brick.position = (brick.position[0] + 210, brick.position[1] + 300)
+            brick.rect.x = brick.position[0]
+            brick.rect.y = brick.position[1]
+
+    def remove_back_to_init(self):
+
+        self.rotate_back()
+        for brick in self.bricks:
+            brick.refresh_position()
+        
     def is_move_possible(self, dir):
 
         for brick in self.bricks:
