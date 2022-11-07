@@ -10,7 +10,7 @@ def main():
     clock = pygame.time.Clock()
     clock.tick(FPS)
     chrono = 0
-    level = 1
+    level = 0
     score = 0
     pause = False
     play = True
@@ -27,6 +27,8 @@ def main():
         WIND.blit(TEXT.render("  Level:" + str(level), 5, (0, 0, 0)), (BRICK * 12, BRICK * 3))
         WIND.blit(TEXT.render("  Score:", 5, (0, 0, 0)), (BRICK * 12, BRICK * 5))
         WIND.blit(TEXT.render("  " + str(score), 5, (0, 0, 0)), (BRICK * 12, BRICK * 6))
+        WIND.blit(TEXT.render("  Next", 5, (0, 0, 0)), (BRICK * 12, BRICK * 8))
+        WIND.blit(TEXT.render("  piece:", 5, (0, 0, 0)), (BRICK * 12, BRICK * 9))
 
         chrono += 1
         if chrono > 10000:
@@ -39,8 +41,8 @@ def main():
             if piece.is_drowned():
                 play = False
             else:
-                score += piece.add_points(level)
-                if score > 1000 * level and level != 10:
+                score += piece.add_points(POINT[level])
+                if score > LEVEL[level] * POINT[level] and level <= 10:
                     level += 1
                     BINGO_SOUNDEFFECT.play().set_volume(0.1)
                 piece = Piece()
@@ -100,7 +102,7 @@ def main():
         # We use the chrono to mark portion of times to make the piece
         # going down itself insted of doing pygame.time.wait() which
         # would considerably slowdown the game.
-        if chrono in range(0, 10000, LEVEL[level - 1]) and not pause:
+        if chrono in range(0, 10000, LEVEL[level]) and not pause:
             try:
                 piece.move_down()
             except IndexError:
