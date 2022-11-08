@@ -121,16 +121,14 @@ def main():
             WIND.blit(PAUSE, (BRICK * 5, BRICK * 8))
 
         pygame.display.update()
-        
+
     # Game-over
-    pygame.mixer.music.stop()
     GAMEOVER_SOUNDEFFECT.play().set_volume(0.3)
     WIND.blit(TEXT.render("GAME OVER", 5, (0, 0, 0)), (BRICK * 4, BRICK * 8))
     pygame.display.flip()
-    # pygame.time.wait(5000)
+    pygame.time.wait(5000)
 
     pygame.quit()
-
 
 
 if __name__ == "__main__":
