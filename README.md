@@ -14,3 +14,9 @@
 
 2. Ensuite éxécutez la commande suivante après avoir activé votre environnement virtuel et installé les libs nécessaires:<br>
 <em>python main.py</em>
+
+<h2>Utilisation</h2>
+les differentes touches:
+    "+" pour augmenter le niveau
+    "espace" pour la rotation de la pièce en cours
+    les flèches pour la direction de la pièce et celle du haut pour mettre le jeu en pause
