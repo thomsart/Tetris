@@ -29,8 +29,6 @@ class Piece:
         self.rotate()
         for brick in self.bricks:
             brick.position = (brick.position[0] + 210, brick.position[1] + 300)
-            brick.rect.x = brick.position[0]
-            brick.rect.y = brick.position[1]
 
     def remove_back_to_init(self):
 
