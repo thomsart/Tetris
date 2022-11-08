@@ -16,7 +16,8 @@
 <em>python main.py</em>
 
 <h2>Utilisation</h2>
-<p>les differentes touches:<br>
+
+les differentes touches:<br>
 * "+" pour augmenter le niveau
 * "espace" pour la rotation de la pièce en cours
-* les flèches pour la direction de la pièce et celle du haut pour mettre le jeu en pause</p>
+* les flèches pour la direction de la pièce et celle du haut pour mettre le jeu en pause
