@@ -20,4 +20,5 @@
 les differentes touches:<br>
 * "+" pour augmenter le niveau
 * "espace" pour la rotation de la pièce en cours
-* les flèches pour la direction de la pièce et celle du haut pour mettre le jeu en pause
+* Les flèches "gauche, droite et bas" pour la direction de la pièce
+* La flèche "haut" pour mettre le jeu en pause
