@@ -28,7 +28,7 @@ def display_screen():
 display_screen()
 
 """
-w To avoid to refresh useless zone in the game, we create two distincts
+To avoid to refresh useless zone in the game, we create two distincts
 Surfaces, one for the pieces areaand an other one for the console board. 
 """
 PLAY_SURFACE = pygame.Surface((BRICK * COLUMN, BRICK * ROW))
