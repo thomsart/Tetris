@@ -24,10 +24,16 @@ class Brick(pygame.sprite.Sprite):
         self.rect.x = self.position[0]
         self.rect.y = self.position[1]
 
+        # We decide to put at the initialisation the Bricks in the FREE_BRICK group
+        # in order to make difference between piece in moving and locked pieces.
         FREE_BRICK.add(self)
         FREE_BRICK.update()
 
+
     def refresh_position(self):
+        """ This method is call to refresh in the game new positions
+        of the Bricks which composed the piece. """
+
         self.position = PLAY_AREA[self.row][self.column]
         self.rect.x = self.position[0]
         self.rect.y = self.position[1]

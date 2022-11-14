@@ -29,7 +29,7 @@ display_screen()
 
 """
 To avoid to refresh useless zone in the game, we create two distincts
-Surfaces, one for the pieces areaand an other one for the console board. 
+Surfaces, one for the pieces area and an other one for the console board. 
 """
 PLAY_SURFACE = pygame.Surface((BRICK * COLUMN, BRICK * ROW))
 PLAY_RECT = pygame.Rect((BRICK, BRICK), (BRICK * COLUMN, BRICK * ROW))

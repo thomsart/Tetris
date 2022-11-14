@@ -24,19 +24,27 @@ class Piece:
         )
         self.pivot = self.bricks[1]
 
+
     def put_aside(self):
+        """ This method just put aside the next piece to help the gamer in
+        revealing it. """
 
         self.rotate()
         for brick in self.bricks:
             brick.position = (brick.position[0] + 210, brick.position[1] + 300)
 
+
     def remove_back_to_init(self):
+        """ Once the preview piece is locked we decide to put back to initial
+        place the piece puted aside in order to play with it. """
 
         self.rotate_back()
         for brick in self.bricks:
             brick.refresh_position()
-        
+
+
     def is_move_possible(self, dir):
+        """ Check if a collision will occure if a move happen. """
 
         for brick in self.bricks:
             if dir == "down":
@@ -49,12 +57,18 @@ class Piece:
                 if brick.column - 1 not in range(COLUMN):
                     return False
 
+
     def move_up(self):
+        """ Just move up. """
+
         for brick in self.bricks:
             brick.row -= 1
             brick.refresh_position()
 
+
     def move_down(self):
+        """ Just move down after checking if a collision wont occure. """
+
         if self.is_move_possible("down") != False:
             for brick in self.bricks:
                 brick.row += 1
@@ -66,7 +80,10 @@ class Piece:
         else:
             raise IndexError
 
+
     def move_right(self):
+        """ Just move right after checking if a collision wont occure. """
+
         if self.is_move_possible("right") != False:
             for brick in self.bricks:
                 brick.column += 1
@@ -75,7 +92,10 @@ class Piece:
                 if pygame.sprite.spritecollideany(brick, BLOCKED_BRICKS):
                     self.move_left()
 
+
     def move_left(self):
+        """ Just move left after checking if a collision wont occure. """
+
         if self.is_move_possible("left") != False:
             for brick in self.bricks:
                 brick.column -= 1
@@ -84,9 +104,10 @@ class Piece:
                 if pygame.sprite.spritecollideany(brick, BLOCKED_BRICKS):
                     self.move_right()
 
-    def is_rotation_possible(self):
 
-        # verification de la collision non faite
+    def is_rotation_possible(self):
+        """ Check if a collision will occure if a rotation happen. """
+
         new_position = []
         for brick in self.bricks:
             if brick == self.pivot:
@@ -101,7 +122,9 @@ class Piece:
 
         return new_position
 
+
     def rotate_back(self):
+        """ We do this action if the rotation create a collicion. """
 
         for brick in self.bricks:
             if brick == self.pivot:
@@ -113,7 +136,9 @@ class Piece:
                 brick.column = new_column
                 brick.refresh_position()
 
+
     def rotate(self):
+        """ Just rotate. """
 
         new_position = self.is_rotation_possible()
         come_back = False
@@ -134,12 +159,16 @@ class Piece:
         if come_back:
             self.rotate_back()
 
+
     def refresh(self):
+        """ We need to refresh each time after a new position. """
 
         for brick in self.bricks:
             WIND.blit(brick.image, brick.position)
 
+
     def lock(self):
+        """ We lock the piece in puting all it's brick in the BLOCKED_BRICKS. """
 
         for brick in self.bricks:
             BLOCKED_BRICKS.add(brick)
@@ -147,14 +176,18 @@ class Piece:
         BLOCKED_BRICKS.update()
         FREE_BRICK.update()
 
+
     def is_locked(self):
+        """ We use this methode to check if the piece is lock or not."""
 
         if BLOCKED_BRICKS.has(self.bricks):
             return True
         else:
             return False
 
+
     def add_points(self, level):
+        """ This method is use to add points to the score. """
 
         rows_to_free = []
         checked_rows = []
@@ -197,8 +230,11 @@ class Piece:
             points = points * multiple
 
         return points
-    
+
+
     def is_drowned(self):
+        """ This method check if a piece is not locked in the top of the game
+        wich means that the user loose the game. """
 
         for brick in self.bricks:
             if brick.row < 1:
